@@ -1,6 +1,6 @@
 /**
  *
- * 简单单链表的实现
+ * 简单元素不可重复单链表的实现
  * 利用泛型实现各种对象的添加(add addAll)、删除(remove, removeAll)、查找(search)、更改(modify)操作
  *
  * @author Amosen
