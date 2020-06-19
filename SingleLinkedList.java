@@ -1,7 +1,8 @@
 /**
  *
  * 简单单链表的实现
- * 利用泛型实现各种对象的添加(add addAll)、删除(remove, removeAll)、查找(search)、更改(modify)操作
+ * 利用泛型实现各种对象的添加(add addAll)、删除(remove, removeAll)、
+ * 查找(search)、更改(modify)、插入(insert)、反转(reverse)操作
  *
  * @author Amosen
  * @create 2020-06-17 20:44
