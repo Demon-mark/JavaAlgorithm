@@ -29,13 +29,29 @@ public class DoubleLinkedList<T> {
 
     }
 
+    /**
+     * 将给定的数据包装为双向结点
+     * @param value 用户给定的数据
+     * @return 新创建的双向结点
+     */
+
     private DoubleNode swap(T value) {
         return new DoubleNode<T>(value);
     }
 
+    /**
+     * 判断链表是否为空
+     * @return
+     */
+
     public boolean isEmpty() {
         return head.next == null;
     }
+
+    /**
+     * 添加数据到链表末尾
+     * @param value 将用户给定的数据
+     */
 
     public void add(T value) {
         DoubleNode node = swap(value);
@@ -45,16 +61,30 @@ public class DoubleLinkedList<T> {
         size++;
     }
 
+    /**
+     * 将数据数组中的数据分别添加到链表末尾
+     * @param values 用户给定的数据数组
+     */
+
     public void addAll(T[] values) {
         for(T value: values) {
             add(value);
         }
     }
 
+    /**
+     * 返回当前链表有效值的个数
+     * @return 当前链表有效值的个数
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * 根据传入的index实施正向查找
+     * @param index 用户给定的索引（正值）
+     * @return 给定索引所指位置的双向结点
+     */
     private DoubleNode searchPositive(int index) {
         int value = 0;
         DoubleNode cur = head.next;
@@ -68,6 +98,11 @@ public class DoubleLinkedList<T> {
         return null;
     }
 
+    /**
+     * 根据传入的index实施反向查找
+     * @param index 用户给定的索引（负值）
+     * @return 给定索引位置的双向结点
+     */
     private DoubleNode searchNegative(int index) {
         int value = 1;
         DoubleNode cur = temp;
@@ -81,6 +116,11 @@ public class DoubleLinkedList<T> {
         return null;
     }
 
+    /**
+     * 查找功能的调度方法
+     * @param index 用户给定的索引（任意整数）
+     * @return 指定索引位置的具体数据值
+     */
     public T search(int index) {
         if(index >= size && index > 0) {
             throw new IndexOutOfBoundsException("The index of " + index + " does not exists");
@@ -97,6 +137,11 @@ public class DoubleLinkedList<T> {
         return null;
     }
 
+    /**
+     * 根据用户给定的值进行查找
+     * @param value 用户指定的索引位置（正值）
+     * @return 指定值的索引位置
+     */
     public int search(T value) {
         DoubleNode searchNode = swap(value);
         int index = 0;
@@ -111,6 +156,11 @@ public class DoubleLinkedList<T> {
         return -1;
     }
 
+    /**
+     * 根据用户给定的索引进行正向查询插入
+     * @param index 给定的索引（正值）
+     * @param destValue 想要插入的值
+     */
     private void insertPositive(int index, T destValue) {
         DoubleNode insertNode = swap(destValue);
         DoubleNode cur = searchPositive(index);
@@ -120,6 +170,11 @@ public class DoubleLinkedList<T> {
         cur.pre = insertNode;
     }
 
+    /**
+     * 根据用户给定的索引进行反向查询插入
+     * @param index 给定的索引（负值）
+     * @param destValue 想要插入的值
+     */
     private void insertNegative(int index, T destValue) {
         DoubleNode insertNode = swap(destValue);
         DoubleNode cur = searchNegative(index);
@@ -129,6 +184,11 @@ public class DoubleLinkedList<T> {
         cur.next = insertNode;
     }
 
+    /**
+     * 插入操作的调度方法
+     * @param index 给定的索引位置（任意整数）
+     * @param destValue 想要插入的值
+     */
     public void insert(int index, T destValue) {
         if(index >= size && index > 0) {
             throw new IndexOutOfBoundsException("The index of " + index + " does not exists");
@@ -144,6 +204,11 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    /**
+     * 根据给出的值进行查询，并在查询到的结点后插入指定值
+     * @param existsValue 链表中已经存在的值，根据此值所对应的结点进行查找
+     * @param inputValue 想要插入的值
+     */
     public void insert(T existsValue, T inputValue) {
         DoubleNode searchNode = swap(existsValue);
         DoubleNode insertNode = swap(inputValue);
@@ -160,6 +225,12 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    /**
+     * 根据用户给定的值进行查找并进行修改
+     * @param sourceValue 给定的链表中已经存在的值
+     * @param destValue 更改后的目标值
+     * @return 返回是否修改成功
+     */
     public boolean modify(T sourceValue, T destValue) {
         DoubleNode sourceNode = swap(sourceValue);
         DoubleNode temp = head.next;
@@ -172,6 +243,13 @@ public class DoubleLinkedList<T> {
         }
         return false;
     }
+
+    /**
+     * 根据用户给定的索引进行正向查找并修改
+     * @param index 给定的索引值（正值）
+     * @param destValue 更改后的目标值
+     * @return 返回是否修改成功
+     */
 
     private boolean modifyPositive(int index, T destValue) {
         int value = 0;
@@ -186,6 +264,12 @@ public class DoubleLinkedList<T> {
         return false;
     }
 
+    /**
+     * 根据用户给定的索引进行反向查找并修改
+     * @param index 给定的索引值（负值）
+     * @param destValue 更改后的目标值
+     * @return 返回是否修改成功
+     */
     private boolean modifyNegative(int index, T destValue) {
         int value = 1;
         DoubleNode cur = temp;
@@ -199,6 +283,12 @@ public class DoubleLinkedList<T> {
         return false;
     }
 
+    /**
+     * 根据用户给定的索引进行修改的调度方法
+     * @param index 用户给定的索引值（任意整数）
+     * @param destValue 更改后的目标值
+     * @return 返回是否修改成功
+     */
     public boolean modify(int index, T destValue) {
         if(index >= size && index > 0) {
             throw new IndexOutOfBoundsException("The index of " + index + " does not exists");
@@ -215,6 +305,10 @@ public class DoubleLinkedList<T> {
         return false;
     }
 
+    /**
+     * 根据用户给定的值进行删除
+     * @param value 给定的值
+     */
     public void remove(T value) {
         if(value == null) {
             return;
@@ -231,6 +325,10 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    /**
+     * 根据用户给定的索引值进行删除
+     * @param index 给定的索引值（任意整数）
+     */
     public void remove(int index) {
         DoubleNode cur = null;
         if(index >= size && index > 0) {
